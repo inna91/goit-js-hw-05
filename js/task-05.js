@@ -1,7 +1,11 @@
 "use srtict";
 class Car {
-  static getSpecs(car) {
-    console.log(car);
+  constructor({ speed = 0, price, maxSpeed, isOn = false, distance = 0 }) {
+    this.speed = speed;
+    this._price = price;
+    this.maxSpeed = maxSpeed;
+    this.isOn = isOn;
+    this.distance = distance;
   }
   /*
    * Добавь статический метод `getSpecs(car)`,
@@ -19,13 +23,6 @@ class Car {
    *  isOn - заведен ли автомобиль, значения true или false. Изначально false
    *  distance - общий киллометраж, изначально 0
    */
-  constructor({ speed = 0, price, maxSpeed, isOn = false, distance = 0 }) {
-    this.speed = speed;
-    this._price = price;
-    this.maxSpeed = maxSpeed;
-    this.isOn = isOn;
-    this.distance = distance;
-  }
 
   /*
    * Добавь геттер и сеттер для свойства price,
@@ -82,9 +79,12 @@ class Car {
    * но только в том случае если машина заведена!
    */
   drive(hours) {
-    if (this.isOn === true) {
+    if (this.isOn) {
       this.distance += hours * this.speed;
     }
+  }
+  static getSpecs(car) {
+    console.log(car);
   }
 }
 
